@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { api } from '../services/api.js';
-import { Search, ShieldCheck, Building2, CheckCircle2, ArrowRight, ArrowLeft } from 'lucide-react';
+import { Search, ShieldCheck, Building2, CheckCircle2, ArrowRight, ArrowLeft, MapPin } from 'lucide-react';
 import { UserAvatar } from './UserAvatar.js';
 
 interface DirectoryViewProps {
@@ -143,7 +143,18 @@ export const DirectoryView: React.FC<DirectoryViewProps> = ({ onSelectProfile, o
                         </span>
                       )}
                     </div>
-                    <div className="text-[11px] text-slate-500 font-mono">@{p.username}</div>
+                    <div className="flex items-center gap-1.5 text-[11px] text-slate-500 font-mono">
+                      <span>@{p.username}</span>
+                      {(p.city || p.country) && (
+                        <>
+                          <span aria-hidden="true">·</span>
+                          <span className="flex items-center gap-0.5 text-slate-500 font-sans">
+                            <MapPin className="w-3 h-3 text-indigo-500 shrink-0" />
+                            <span>{p.city && p.country ? `${p.city}, ${p.country}` : p.city || p.country}</span>
+                          </span>
+                        </>
+                      )}
+                    </div>
                     <div className="text-xs text-slate-600 mt-1 line-clamp-2">{p.headline}</div>
                   </div>
                 </div>

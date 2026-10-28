@@ -352,6 +352,10 @@ export default function App() {
           onBack={handleBack}
           onOpenAvatarUpload={() => setShowAvatarModal(true)}
           onLogout={handleLogout}
+          onProfileUpdated={(updated) => {
+            setCurrentUser(updated);
+            refreshData();
+          }}
         />
       );
     }
@@ -399,6 +403,10 @@ export default function App() {
             onOpenAvatarUpload={() => setShowAvatarModal(true)}
             onOpenSearch={() => setShowSearchModal(true)}
             onRefreshData={refreshData}
+            onProfileUpdated={(updated) => {
+              setCurrentUser(updated);
+              refreshData();
+            }}
           />
         ) : (
           <LandingPage
